@@ -1,4 +1,4 @@
-package Trees;
+package Practice.src.Trees;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Queue;
 
 public class ZigZagTraversal {
-	Node node;
+	Trees.Node node;
 	
-	public List<Integer> zigzag(Node node){
+	public List<Integer> zigzag(Trees.Node node){
 		
 		List<Integer> answer = new ArrayList<>();
-		Node treeNode;
+		Trees.Node treeNode;
 		boolean leftToRight = false;
-		Queue <Node> treeElements = new ArrayDeque<>();
+		Queue <Trees.Node> treeElements = new ArrayDeque<>();
 		treeElements.add(node);
 		while (!treeElements.isEmpty()) {
 			int size = treeElements.size();

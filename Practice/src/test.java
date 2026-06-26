@@ -1,4 +1,3 @@
-import java.util.*;
 public class test {
 	
 	public static Double mathCheck(String price) {
@@ -74,11 +73,51 @@ public class test {
 		System.out.println(number);
 		System.out.println(num);
 		scanner.close();
-		*/
 		
 		String price  = "1005.99";
 		Double answer = mathCheck(price);
 		System.out.println(answer);
+		*/
+
+		int value = -1;
 		
+
+
+		/* 
+		Double cartPrice = 25.00;
+		Double v1 = 25.0;
+
+		if (cartPrice == v1){
+			System.out.println("Matches");
+		}
+		else{
+			System.out.println("Not Matches");
+		}
+		*/
+		String cartPrice = "25.00";
+		String VariantPriceList = "25.0##25.0##25.0##25.0##25.0##25.0##25.0##25.0";
+
+		String cp = "";
+		cp.replace(".","");
+		VariantPriceList.trim();
+		//"25.00,##25.0,##25.0,##25.0,##25.0,##25.0,##25.0,##25.0,##25.0,##25.0,##25.0,##25.0,##25.0,##25.0,"
+		String[] price = VariantPriceList.split("##");
+
+			for (String prc: price) {
+				// if (!cp.equals(prc)) {
+				// 	value = 0;
+				// }
+
+				System.out.println(cartPrice);
+
+				if (Double.parseDouble(cartPrice) != Double.parseDouble(prc.replace(",", ""))){
+					value = 0;
+				}
+			}
+			if (value == -1){
+				System.out.println("1");
+			}
+
+			//System.out.println(value);
 	}
 }

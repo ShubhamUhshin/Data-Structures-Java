@@ -1,46 +1,63 @@
-// BFS Traversal of a graph.
-// SC- O(N) ignoring the adjacency list
-// TC - O(N) + O(2E) where E is the edges
-
 package Graphs;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.Queue;
 
-public class BFS {
-	
-	public ArrayList<Integer> findBFS (int V, ArrayList<ArrayList<Integer>> adj){
-		
-		ArrayList <Integer> bfs = new ArrayList<>();
-		Queue <Integer> q = new LinkedList<>();
-		boolean vis [] = new boolean[V];
-		
-		q.add(0);
-		vis[0] = true;
-		
-		while (!q.isEmpty()) {
-			
-			Integer val = q.poll();
-			bfs.add(val);
-			
-			for (Integer i : adj.get(val)) {
-				
-				if (!vis[i]) {
-					vis[i] = true;
-					q.add (i);
+public class BFS{
+
+	public void bfsTraversal (ArrayList<ArrayList<Integer>> adj, int node, int[] visited, ArrayList<Integer> bfsGraph){
+
+		Queue<Integer> neighbourQueue= new ArrayDeque<>();
+
+		neighbourQueue.add(node);
+		visited[node] = 1;
+
+		while (!neighbourQueue.isEmpty()){
+			int currNode = neighbourQueue.poll();
+			bfsGraph.add(currNode);
+			for (int neighbour : adj.get(currNode)){
+				if (visited[neighbour] == 0){
+					neighbourQueue.add(neighbour);
+					visited[neighbour] = 1;
 				}
-				
 			}
 		}
-		
-		return bfs;
-		
-		
-	}
-	
-	public static void main(String args[]) {
-		
+
+		for (int i : bfsGraph){
+
+			System.out.println(i);
+		}
 	}
 
+	public static void main(String args[]){
+
+		Adjacency adjClass = new Adjacency();
+		ArrayList<ArrayList<Integer>> undirectedGraphList = new ArrayList<ArrayList<Integer>>();
+
+		adjClass.adjacencyListCreation(undirectedGraphList);
+
+
+		adjClass.unweightedAdjacencyList(undirectedGraphList,1,2);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,2,3);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,3,4);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,4,5);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,4,6);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,3,7);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,3,7);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,3,8);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,2,10);
+		adjClass.unweightedAdjacencyList(undirectedGraphList,1,9);
+
+
+		int[] visited = new int [undirectedGraphList.size()+1];
+		Arrays.fill(visited, 0);
+
+		BFS bfs = new BFS();
+		ArrayList <Integer> bfsGraph = new ArrayList<>();
+
+		bfs.bfsTraversal(undirectedGraphList, 1, visited, bfsGraph);
+
+	}
 }
